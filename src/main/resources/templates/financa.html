@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="LayoutPadrao">
+
+
+<head>
+<title>financa</title>
+</head>
+
+<section layout:fragment="conteudo" style=  padding-top:5px>
+
+	<form class="" method="POST" action="/financa" id="forms" th:object="${titulo}">
+<div class="table" style=" border-style: solid; border-width: 2px; margin-right: 2px; margin-left: 6px; width: 99%!important">
+		<div layout:insert="mensagemgeral" ></div>
+		<div layout:insert="mensagem" ></div>
+		
+
+		
+		<div class="card"></div>
+
+		<div class="clearfix">
+
+			<a class="btn-btn-link gft-link-panel " href="/financa" id="pigs">
+				Ir para Pesquisas </a>
+
+			<div class="card-header " id="laia">Pagamentos de conta Online</div>
+
+			<div class="card-body"></div>
+			<input type="hidden" th:field="*{codigo}" />
+
+
+			<div class="container">
+
+				<div class="form-group row">
+					<label for="conta"
+						class="text-right col-sm-2 col-form-label col-form-label-sm  tamanholabel">Conta
+						:</label>
+					<div class="col-sm-6">
+
+						<select class="custom-select my-1 mr-sm-2" 
+							 name="conta" th:fild="*{conta}">
+							<option selected>Selecione...</option>
+							<option value="luz">Luz</option>
+							<option value="agua">Agua</option>
+							<option value="telefone">Telefone</option>
+							<option value="BB">Boleto Bancario</option>
+
+
+
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="datavencimento"
+						class="text-right col-sm-2 col-form-label col-form-label-sm " id="vencimento">Vencimento
+						:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control form-control"
+							placeholder="vencimento" id="datavencimento"
+							th:field="*{dataVencimento}"
+							th:classappend="${#fields.hasErrors('dataVencimento')} ?  is-invalid">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="valor"
+						class="text-right col-sm-2 col-form-label col-form-label-sm tamanhoLabel01" id="Valor">Valor
+						:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control form-control"
+							placeholder="Valor" id="valor" th:field="*{valor}"
+							th:classappend="${#fields.hasErrors('valor')} ?  is-invalid" />
+					</div>
+				</div>
+
+
+				<div class="form-group row">
+					<label for="status"
+						class="text-right col-sm-2 col-form-label col-form-label-sm " id="pagamento">Pagamento
+						:</label>
+					<div class="col-sm-4">
+
+						<select class="custom-select my-1 mr-sm-2" id="status"
+							name="status">
+
+							<option th:each="status : ${todosStatusTitulo}"
+								th:value="${status}" th:text="${status.conta}"></option>
+
+
+						</select>
+
+					</div>
+
+					<div class="form-group row">
+						<div class="col-sm-2"></div>
+						<button class="btn btn-success">Salvar</button>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+</html>
